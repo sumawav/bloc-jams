@@ -29,38 +29,42 @@ body {
 }
 
 .navbar .links-container {
-    display: table;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100px;
-    color: white;
-    text-decoration: none;
+  display: table;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  color: white;
+  text-decoration: none;
 }
 
 .links-container .navbar-link {
-    display: table-cell;
-    position: relative;
-    height: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    vertical-align: middle;
-    color: white;
-    font-size: 0.625rem;
-    letter-spacing: 0.05rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-decoration: none;
-    cursor: pointer;
+  display: table-cell;
+  position: relative;
+  height: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  vertical-align: middle;
+  color: white;
+  font-size: 0.625rem;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .links-container .navbar-link:hover {
-    color: rgb(233,50,117);
+  color: rgb(233,50,117);
+}
+
+.navbar .links-container:active {
+  background-color: white;
 }
 
 .container {
-    margin: 0 auto;
-    max-width: 64rem;
+  margin: 0 auto;
+  max-width: 64rem;
 }
 
 /* Medium and small screens (640px) */
@@ -89,10 +93,10 @@ body {
 
 .clearfix::before,
 .clearfix::after {
-   content: " ";
-   display: table;
+  content: " ";
+  display: table;
 }
 
 .clearfix::after {
-   clear: both;
+  clear: both;
 }
