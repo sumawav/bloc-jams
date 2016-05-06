@@ -2,30 +2,16 @@
 var animatePoints = function() {
   var points = document.getElementsByClassName('point');
 
-  var revealFirstPoint = function() {
-    points[0].style.opacity = 1;
-    points[0].style.transform = "scale(1) translateY(0)";
-    points[0].style.msTransform = "scaleV(1) translateY(0)";
-    points[0].style.WebkitTransform = "scaleV(1) translateY(0)";
-  };
+  var revealPoints = function(point) {
+    points[point].style.opacity = 1;
+    points[point].style.transform = "scale(1) translateX(0)";
+    points[point].style.msTransform = "scaleV(1) translateX(0)";
+    points[point].style.WebkitTransform = "scaleV(1) translateX(0)";
+  }
 
-  var revealSecondPoint = function() {
-    points[0].style.opacity = 1;
-    points[0].style.transform = "scale(1) translateY(0)";
-    points[0].style.msTransform = "scaleV(1) translateY(0)";
-    points[0].style.WebkitTransform = "scaleV(1) translateY(0)";
-  };
-
-  var revealThirdPoint = function() {
-    points[0].style.opacity = 1;
-    points[0].style.transform = "scale(1) translateY(0)";
-    points[0].style.msTransform = "scaleV(1) translateY(0)";
-    points[0].style.WebkitTransform = "scaleV(1) translateY(0)";
-  };
+  for (var i = 0; i < points.length; ++i){
+    revealPoints(i);
+  }
 
 
-
-  revealFirstPoint();
-  revealSecondPoint();
-  revealThirdPoint();
 };
