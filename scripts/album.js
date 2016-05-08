@@ -30,6 +30,22 @@ var albumMarconi = {
     ]
 };
 
+// Another Another Example Album
+var albumChappelle = {
+    title: 'Better in Slow Motion',
+    artist: 'Tyrone Biggum',
+    label: 'I\'m Rich Records',
+    year: '2003',
+    albumArtUrl: 'assets/images/album_covers/12.png',
+    songs: [
+        { title: 'Ashy Larry', duration: '1:51' },
+        { title: 'White People Dancing', duration: '7:41' },
+        { title: 'WHAT!?', duration: '8:51'},
+        { title: 'President Black Bush', duration: '5:44' },
+        { title: 'Playa Hater\'s Ball', duration: '6:45'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -43,28 +59,33 @@ var createSongRow = function(songNumber, songName, songLength) {
 };
 
 var setCurrentAlbum = function(album) {
-  // #1
   var albumTitle = document.getElementsByClassName('album-view-title')[0];
   var albumArtist = document.getElementsByClassName('album-view-artist')[0];
   var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
   var albumImage = document.getElementsByClassName('album-cover-art')[0];
   var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
-  // #2
   albumTitle.firstChild.nodeValue = album.title;
   albumArtist.firstChild.nodeValue = album.artist;
   albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
   albumImage.setAttribute('src', album.albumArtUrl);
 
-  // #3
   albumSongList.innerHTML = '';
 
-  // #4
   for (var i = 0; i < album.songs.length; ++i) {
     albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
   }
 };
 
 window.onload = function() {
-  setCurrentAlbum(albumPicasso);
+  var albumCarousel = [albumPicasso, albumMarconi, albumChappelle];
+  var albumSelect = 0;
+  setCurrentAlbum(albumCarousel[albumSelect]);
+
+  document.getElementsByClassName('album-cover-art')[0].addEventListener('click', function() {
+    ++albumSelect;
+    albumSelect %= 3;
+    setCurrentAlbum(albumCarousel[albumSelect]);
+  });
+
 };
