@@ -22,8 +22,6 @@ window.onload = function() {
   var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
 
   window.addEventListener('scroll', function(e){
-    console.log("documentElement.scrollTop: " + document.documentElement.scrollTop);
-    console.log("body.scrollTop           : " + document.body.scrollTop);
     if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance) {
       animatePoints(pointsArray);
     }
