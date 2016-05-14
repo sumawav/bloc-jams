@@ -15,8 +15,9 @@ var createSongRow = function(songNumber, songName, songLength) {
       // pausing a currently playing song
       $(this).html(playButtonTemplate);
       $('.main-controls .play-pause').html(playerBarPlayButton);
-      currentlyPlayingSongNumber = null;
-      currentSongFromAlbum = null;
+      // currentlyPlayingSongNumber = null;
+      // currentSongFromAlbum = null;
+      setSong(null);
     } else if (clickedSong !== currentlyPlayingSongNumber) {
       // playing a new song
       $(this).html(pauseButtonTemplate);
