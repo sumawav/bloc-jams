@@ -28,7 +28,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
       $('.volume .fill').width(currentVolume + '%');
       $('.volume .thumb').css({left: currentVolume + '%'});
-      
+
       $(this).html(pauseButtonTemplate);
       currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
       updatePlayerBarSong();
@@ -199,8 +199,7 @@ var trackIndex = function(album, song) {
 var updatePlayerBarSong = function() {
   var artist = currentAlbum.artist;
   var title = currentSongFromAlbum.title;
-  console.log("artist: " + artist);
-  console.log("title: " + title);
+
   $(".currently-playing .song-name").text(title);
   $(".currently-playing .artist-song-mobile").text(artist + " - " + title);
   $(".currently-playing .artist-name").text(artist);
