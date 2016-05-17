@@ -86,6 +86,7 @@ var setCurrentAlbum = function(album) {
 var nextSong = function() {
   var len = currentAlbum.songs.length;
   var index = trackIndex(currentAlbum, currentSongFromAlbum);
+  console.log(index);
   var previousSongNumber = index + 1;
 
   // increment song index and loop around if need be
@@ -123,7 +124,9 @@ var previousSong = function() {
 var togglePlayFromPlayerBar = function() {
   var $currentSongNumberCell = getSongNumberCell(currentlyPlayingSongNumber);
   var $playPause = $('.main-controls .play-pause');
-  if ( currentSoundFile.isPaused() ) {
+  if (!currentSoundFile) {
+    nextSong();
+  } else if ( currentSoundFile.isPaused() ) {
     $(this).html(pauseButtonTemplate);
     $playPause.html(playerBarPauseButton);
     currentSoundFile.play();
