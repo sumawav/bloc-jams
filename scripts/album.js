@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   '<tr class="album-view-song-item">'
   + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
   + '  <td class="song-item-title">' + songName + '</td>'
-  + '  <td class="song-item-duration">' + songLength + '</td>'
+  + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
   + '</tr>';
 
   var $row = $(template);
@@ -28,7 +28,7 @@ var createSongRow = function(songNumber, songName, songLength) {
 
       $('.volume .fill').width(currentVolume + '%');
       $('.volume .thumb').css({left: currentVolume + '%'});
-      
+
       $(this).html(pauseButtonTemplate);
       currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
       updatePlayerBarSong();
@@ -96,6 +96,7 @@ var updateSeekBarWhileSongPlays = function() {
       var $seekBar = $('.seek-control .seek-bar');
 
       updateSeekPercentage($seekBar, seekBarFillRatio);
+      setCurrentTimeInPlayerBar( filterTimeCode(this.getTime()) );
     });
   }
 }; // updateSeekBarWHileSongPlays
@@ -199,12 +200,12 @@ var trackIndex = function(album, song) {
 var updatePlayerBarSong = function() {
   var artist = currentAlbum.artist;
   var title = currentSongFromAlbum.title;
-  console.log("artist: " + artist);
-  console.log("title: " + title);
+
   $(".currently-playing .song-name").text(title);
   $(".currently-playing .artist-song-mobile").text(artist + " - " + title);
   $(".currently-playing .artist-name").text(artist);
   $(".main-controls .play-pause").html(playerBarPauseButton);
+  setTotalTimeInPlayerBar( filterTimeCode(currentSongFromAlbum.duration) );
 }; // updatePLayerBarSong
 
 var setSong = function(songNumber) {
@@ -237,6 +238,24 @@ var getSongNumberCell = function(number) {
   var $cell = $('.song-item-number[data-song-number="' + number + '"]');
   return $cell;
 };
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+  $(".current-time").text(currentTime);
+}; //setCurrentTimeInPlayerBar
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+  $(".total-time").text(totalTime);
+}; //setTotalTimeInPlayerBar
+
+var filterTimeCode = function(timeInSeconds) {
+  var totalSeconds = Math.floor(parseFloat(timeInSeconds, 10));
+  var minutes = Math.floor(totalSeconds / 60);
+  var leftoverSeconds = Math.floor(totalSeconds % 60);
+  if (leftoverSeconds < 10) {
+    leftoverSeconds = "0" + leftoverSeconds;
+  }
+  return minutes + ":" + leftoverSeconds;
+}; //filerTimeCode
 
 // Album button templates
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
